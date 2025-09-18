@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Vinh Khang</title>
+  <style>
+    :root {
+      --primary: #3498db;
+      --dark: #2c3e50;
+      --light: #f4f4f9;
+      --white: #fff;
+    }
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    body {font-family: 'Segoe UI', Arial, sans-serif; background: var(--light); color: #333; line-height: 1.6; scroll-behavior: smooth;}
+
+    /* NAVBAR */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: white;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 40px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+    nav .logo {font-weight: bold; font-size: 18px; letter-spacing: 2px;}
+    nav ul {list-style: none; display: flex; gap: 25px;}
+    nav ul li a {text-decoration: none; color: var(--dark); font-weight: 500; transition: color 0.3s;}
+    nav ul li a:hover {color: var(--primary);}
+    .contact-btn {
+      background: black; color: white;
+      padding: 8px 18px; border-radius: 20px; text-decoration: none; font-weight: bold;
+      transition: all 0.3s;
+    }
+    .contact-btn:hover {background: var(--primary);}
+
+    /* HEADER */
+    header {
+      margin-top: 70px;
+      background: linear-gradient(120deg, #3498db 0%, #f4f4f9 100%);
+      padding: 32px 0 32px 0;
+    }
+    .header-flex {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      max-width: 900px;
+      margin: auto;
+      flex-wrap: wrap;
+    }
+    .header-gif {
+      width: 340px;
+      height: 340px;
+      border-radius: 28px;
+      object-fit: cover;
+      box-shadow: 0 8px 32px rgba(44,62,80,0.16);
+    }
+    .header-info {
+      text-align: center;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .avatar {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      margin-bottom: 18px;
+      border: 6px solid #3498db;
+      background: #fff;
+      box-shadow: 0 8px 32px rgba(52,152,219,0.15), 0 2px 12px rgba(44,62,80,0.12);
+      object-fit: cover;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .avatar:hover {
+      transform: scale(1.09) rotate(-2deg);
+      box-shadow: 0 16px 40px rgba(52,152,219,0.22), 0 6px 32px rgba(44,62,80,0.18);
+    }
+    header h1 {
+      font-size: 34px;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+    header .header-desc {
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 10px;
+      opacity: 0.92;
+    }
+    .btn {
+      background: var(--primary);
+      color: white;
+      padding: 9px 18px;
+      border-radius: 18px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      transition: 0.3s;
+      font-size: 15px;
+    }
+    .btn:hover {background: #217dbb;}
+
+    /* SECTIONS */
+    section {max-width: 1100px; margin: 60px auto; padding: 0 20px;}
+    section h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.2rem;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      background: linear-gradient(90deg, #3498db 0%, #6a89cc 100%);
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      text-shadow: 0 2px 12px rgba(52,152,219,0.13);
+      position: relative;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+
+    /* ABOUT */
+    .about-container {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .about-card {
+      background: white;
+      border-radius: 18px;
+      padding: 28px 25px;
+      box-shadow: 0 6px 24px rgba(52,152,219,0.10), 0 1.5px 8px rgba(44,62,80,0.08);
+      flex: 1;
+      min-width: 280px;
+      max-width: 500px;
+      text-align: center;
+      transition: box-shadow 0.3s, transform 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-card:hover {
+      box-shadow: 0 12px 32px rgba(52,152,219,0.18), 0 2px 16px rgba(44,62,80,0.13);
+      transform: translateY(-12px) scale(1.04);
+    }
+    .about-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      border-radius: 18px;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      opacity: 0.12;
+      background: linear-gradient(120deg, #3498db33 0%, #f4f4f9 100%);
+      z-index: 0;
+    }
+    .about-card:hover::before {
+      opacity: 0.22;
+    }
+    .about-icon {
+      font-size: 40px;
+      margin-bottom: 12px;
+      display: inline-block;
+      transition: transform 0.4s cubic-bezier(.68,-0.55,.27,1.55);
+    }
+    .about-card:hover .about-icon {
+      transform: scale(1.18) rotate(-8deg);
+      filter: drop-shadow(0 2px 8px #3498db55);
+    }
+    .about-desc {
+      margin: 10px 0;
+      color: #444;
+      font-size: 16px;
+      text-align: justify;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+    .skills {margin-top: 15px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;}
+    .skills span {background: #f1f1f1; padding: 6px 12px; border-radius: 20px; font-size: 13px; transition: 0.3s;}
+    .skills span:hover {background: var(--primary); color: white;}
+
+    /* PROJECTS */
+    .projects {display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;}
+    .project-card {
+      background: white; border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden; transition: transform 0.3s;
+    }
+    .project-card:hover {transform: translateY(-5px);}
+    .project-card img {width: 100%; height: 160px; object-fit: cover;}
+    .project-content {padding: 15px;}
+    .project-content h3 {margin: 10px 0; font-size: 18px; color: var(--dark);}
+    .tags span {background: #f1f1f1; padding: 4px 10px; border-radius: 12px; font-size: 12px; margin: 3px; display: inline-block;}
+
+    /* CONTACT */
+    .contact-container {display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;}
+    .info-card {
+      background: white; padding: 20px; border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center; flex: 1; min-width: 220px;
+      transition: 0.3s;
+    }
+    .info-card:hover {transform: translateY(-5px);}
+    .info-card span {font-size: 28px; display: block; margin-bottom: 8px;}
+    .info-card a {text-decoration: none; color: var(--primary); font-weight: 500;}
+
+    /* FOOTER */
+    footer {background: var(--dark); color: var(--white); text-align: center; padding: 15px; margin-top: 40px;}
+    footer a {color: var(--primary);}
+
+    .buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+    }
+
+    .buttons a {
+    flex: 1; /* mỗi nút chiếm đều nhau */
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+    }
+
+    /* Nút chính */
+    .btn {
+    background: var(--primary);
+    color: white;
+    }
+    .btn:hover {background: #217dbb;}
+
+    /* Nút viền */
+    .btn-outline {
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    background: transparent;
+    }
+    .btn-outline:hover {
+    background: var(--primary);
+    color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">VINH KHANG</div>
+    <ul>
+      <li><a href="#home">Trang chủ</a></li>
+      <li><a href="#about">Giới thiệu</a></li>
+      <li><a href="#projects">Dự án</a></li>
+      <li><a href="#contact">Liên hệ</a></li>
+    </ul>
+    <a href="#contact" class="contact-btn">Liên hệ</a>
+  </nav>
+
+  <!-- HEADER -->
+  <header id="home">
+    <div class="header-flex">
+      <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" class="header-gif" alt="Tech GIF">
+      <div class="header-info">
+        <img src="avatar.png" alt="Avatar" class="avatar">
+        <h1>Vinh Khang</h1>
+        <div class="header-desc">Sinh viên CNTT, yêu thích AI, Data Science &amp; Flutter. Đam mê sáng tạo sản phẩm công nghệ hữu ích cho cộng đồng.</div>
+        <a href="Nguyen-Tran-Vinh-Khang-DA.pdf" class="btn">📄 Tải CV</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>VỀ TÔI</h2>
+    <div class="about-container">
+      <div class="about-card">
+        <div class="about-icon">👨‍💻</div>
+        <h3>Hành trình</h3>
+        <p class="about-desc">
+        Tôi là sinh viên năm cuối chuyên ngành <b>Khoa học Dữ liệu</b> tại Đại học Nguyễn Tất Thành. 
+        Trong suốt quá trình học tập, tôi đã trang bị nền tảng vững chắc về thống kê, phân tích dữ liệu và các mô hình học máy, đồng thời kết hợp thực hành qua nhiều dự án thực tế.
+        </p>
+        <p class="about-desc">
+        Định hướng nghề nghiệp của tôi tập trung vào <b>Data, AI và Flutter</b>. 
+        Tôi đam mê khai thác dữ liệu để tạo ra thông tin giá trị, ứng dụng trí tuệ nhân tạo để xây dựng các hệ thống thông minh, 
+        đồng thời phát triển ứng dụng di động với Flutter nhằm mang sản phẩm công nghệ đến gần hơn với người dùng.
+        </p>
+        <p class="about-desc">
+        Tôi luôn nỗ lực học hỏi và trau dồi kỹ năng để không chỉ trở thành một <b>Data Analyst</b> và <b>AI Engineer</b> tiềm năng, 
+        mà còn là một nhà phát triển ứng dụng sáng tạo, sẵn sàng đóng góp vào những dự án mang tính đột phá và hữu ích cho cộng đồng.
+        </p>
+      </div>
+      <div class="about-card">
+      <div class="about-icon">🛠️</div>
+        <h3>Kỹ năng & Công nghệ</h3>
+        <div class="skills">
+        <!-- Dev / AI -->
+        <span>Flutter</span><span>Firebase</span><span>Dart</span><span>SQLite</span>
+        <span>Python</span><span>TensorFlow</span><span>PyTorch</span><span>Scikit-learn</span>
+        <span>Pandas</span><span>NumPy</span><span>Keras</span><span>React</span>
+        <span>Computer Vision</span><span>NLP</span>
+
+        <!-- Data Analyst -->
+        <span>SQL</span><span>Excel</span><span>Power BI</span>
+        <span>Data Cleaning</span><span>Data Visualization</span>
+        
+      </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+  <h2>DỰ ÁN CỦA TÔI</h1>
+  <div class="projects">
+    <!-- Project 1: Food AI -->
+    <div class="project-card">
+      <img src="https://aecengg.com/wp-content/uploads/2024/12/AI-food.png" alt="Food AI">
+      <div class="project-content">
+        <h3>Món gì đây?</h3>
+        <p>Ứng dụng AI nhận diện nguyên liệu từ ảnh và gợi ý công thức nấu ăn.</p>
+        <div class="tags">
+          <span>Python</span><span>TensorFlow</span><span>React</span>
+        </div>
+        <div class="buttons">
+          <a href="https://lockman04.github.io/SavoryAI/" class="btn">Demo</a>
+          <a href="https://github.com/VinhKhangg/ARTIFICIAL_INTELLIGENCE_COMPETITION.git" class="btn-outline">Mã nguồn</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2: Pneumonia Detection -->
+    <div class="project-card">
+      <img src="https://benhvienthucuc.vn/_next/image?url=https%3A%2F%2Fbenhvienthucuc.vn%2Fwp-content%2Fuploads%2F2024%2F02%2Fviem-phoi-o-nguoi-lon.jpg&w=750&q=85" alt="Pneumonia Detection">
+      <div class="project-content">
+        <h3>Nhận diện viêm phổi từ X-quang</h3>
+        <p>Mô hình Deep Learning (CNN, Transfer Learning) phát hiện bệnh viêm phổi từ ảnh X-quang ngực.</p>
+        <div class="tags">
+          <span>Python</span><span>TensorFlow</span><span>Keras</span>
+          <span>Deep Learning</span><span>CNN</span><span>Google Colab</span>
+        </div>
+        <div class="buttons">
+          <a href="https://github.com/VinhKhangg/RECOGNIZING_PNEUMONIA.git" class="btn-outline">Mã nguồn</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 3: Voice Banking -->
+    <div class="project-card">
+      <img src="https://itexus.com/wp-content/uploads/2023/08/PREVIEW-%E2%80%A2-Voice-banking_-Development-Integration-Use-cases-1.png" alt="Voice Banking">
+      <div class="project-content">
+        <h3>Voice Banking</h3>
+        <p>Ứng dụng Flutter thông báo giao dịch bằng giọng nói, thống kê, xuất PDF.</p>
+        <div class="tags">
+          <span>Flutter</span><span>Dart</span><span>Firebase Authentication</span>
+          <span>Firebase Firestore</span><span>Firebase Messaging</span>
+          <span>SQLite</span><span>SharedPreferences</span>
+          <span>PDF Generation</span><span>Push Notifications</span>
+          <span>Text-to-Speech</span><span>Audio Player</span>
+        </div>
+        <div class="buttons">
+          <a href="https://github.com/VinhKhangg/DETECTING_BANK_FLUCTUATIONS.git" class="btn-outline">Mã nguồn</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>LIÊN HỆ</h2>
+    <div class="contact-container">
+      <div class="info-card"><span>📧</span><h4>Email</h4><a href="mailto:ntvinhkhang01012004@gmail.com">ntvinhkhang01012004@gmail.com</a></div>
+      <div class="info-card"><span>🔗</span><h4>GitHub</h4><a href="https://github.com/VinhKhangg" target="_blank">github.com/VinhKhangg</a></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2025 Vinh Khang - Portfolio | Made with ❤️
+  </footer>
+
+<script>
+document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener("click", function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute("href");
+    const section = document.querySelector(targetId);
+    if (section) {
+      const h2 = section.querySelector('h2');
+      const scrollToEl = h2 ? h2 : section;
+      const navbar = document.querySelector('nav');
+      const navbarHeight = navbar ? navbar.offsetHeight : 0;
+      const rect = scrollToEl.getBoundingClientRect();
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const top = rect.top + scrollTop - navbarHeight - 10;
+      window.scrollTo({top, behavior: "smooth"});
+    }
+  });
+});
+</script>
+</body>
+</html>
